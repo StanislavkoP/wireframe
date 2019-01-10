@@ -10,13 +10,31 @@ class PhoneBook extends Component {
 
 	componentDidMount() {
 		this.props.getPhoneList();
+	};
+
+	static defaultProps = {
+		phoneList: []
 	}
 
+	static propTypes = {
+		phoneList: PropTypes.array,
+		getPhoneList: PropTypes.func.isRequired
+	};
+
 	render() {
+		const { phoneList, loading } = this.props;
+
+		let phoneListContent = null;
+		
+		if ( !loading ) {
+			phoneListContent = <PhoneList phoneList={ phoneList }/>
+		
+		}
+
 		return (
 			<div className="ui grid centered">
 				<div className="six wide column">
-					<PhoneList />
+					{ phoneListContent }
 				</div>
 
 				<div className="six wide column">
@@ -24,16 +42,19 @@ class PhoneBook extends Component {
 				</div>
 			
 			</div>
-		)
-	}
+		);
+	};
 };
 
 const mapStateToProps = state => ({
-	phoneList: state.phoneList
+	phoneList: state.phoneList,
+	loading: state.loading,
+
 });
 
 const mapDispatchToProps = dispatch => ({
 	getPhoneList : () => dispatch( actions.getPhoneList() )
-})
+
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhoneBook);
