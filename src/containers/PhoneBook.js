@@ -7,6 +7,10 @@ import * as actions from '../state/actions/index';
 import PhoneList from '../components/PhoneList/PhoneList';
 
 class PhoneBook extends Component {
+	
+	state = {
+		currentPhone: null
+	}
 
 	componentDidMount() {
 		this.props.getPhoneList();
@@ -21,13 +25,22 @@ class PhoneBook extends Component {
 		getPhoneList: PropTypes.func.isRequired
 	};
 
+	getPhoneItem( dataPhone ) {
+		this.setState({currentPhone: dataPhone})
+		console.log(dataPhone);
+	}
+
 	render() {
 		const { phoneList, loading } = this.props;
 
 		let phoneListContent = null;
 		
 		if ( !loading ) {
-			phoneListContent = <PhoneList phoneList={ phoneList }/>
+			phoneListContent = 
+				<PhoneList 
+					phoneList={ phoneList }
+					getPhoneItem={ (dataPhone) => this.getPhoneItem(dataPhone) }
+				/>
 		
 		}
 

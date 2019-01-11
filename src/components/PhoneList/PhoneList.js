@@ -11,10 +11,11 @@ PhoneList.defaultProps = {
 
 PhoneList.propTypes = {
 	phoneList: PropTypes.array,
+	getPhoneItem: PropTypes.func.isRequired,
 };
 
 function PhoneList(props) {
-	const { phoneList } = props;
+	const { phoneList, getPhoneItem } = props;
 
 	return (
 		<div className="ui link items phoneList">
@@ -26,6 +27,7 @@ function PhoneList(props) {
 						firstName={ phone.general.firstName }
 						lastName={ phone.general.lastName }
 						jobTitle={ phone.job.title }
+						clicked={ () => getPhoneItem(phone) }
 					/>
 				))
 			}
