@@ -3,8 +3,12 @@ import PropTypes from 'prop-types'
 
 import './FullPhoneItem.css';
 
-FullPhoneItem.propTypes = {
+FullPhoneItem.defaultTypes = {
+	client: {}
+}
 
+FullPhoneItem.propTypes = {
+	client: PropTypes.object.isRequired
 }
 
 function FullPhoneItem(props) {
