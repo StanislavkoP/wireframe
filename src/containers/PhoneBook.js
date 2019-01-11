@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as actions from '../state/actions/index';
+import filterList from '../utils/filterList';
 
-import PhoneList from '../components/PhoneList/PhoneList';
-import FullPhoneItem from '../components/FullPhoneItem/FullPhoneItem';
+import ClientList from '../components/ClientList/ClientList';
+import FullClientItem from '../components/FullClientItem/FullClientItem';
 import SearchInput from '../components/UI/SearchInput';
 
 class PhoneBook extends Component {
@@ -15,58 +16,105 @@ class PhoneBook extends Component {
 		this.state = {
 			searchedText: '',
 			currentClient: null,
+			filteredClientList: [],
 			displayCurrentClient: false,
 		}
 
 		this.onSearch = this.onSearch.bind(this)
 	}
 
-
-	componentDidMount() {
-		this.props.getPhoneList();
-	};
-
 	static defaultProps = {
-		phoneList: []
+		clientList: []
 	}
 
 	static propTypes = {
-		phoneList: PropTypes.array,
-		getPhoneList: PropTypes.func.isRequired
+		clientList: PropTypes.array,
+		getClientList: PropTypes.func.isRequired
 	};
 
-	getPhoneItem( dataPhone ) {
-		this.setState({currentClient: dataPhone, displayCurrentClient: true})
-		console.log(dataPhone);
+
+
+	componentDidMount() {
+		this.props.getClientList();
+	
+	};
+
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.clientList) {
+			this.setState({filteredClientList: nextProps.clientList})
+		
+		}
+	}
+
+
+
+	getClientItem( dataClient ) {
+		this.setState({currentClient: dataClient, displayCurrentClient: true})
+		
+	
 	}
 
 	onSearch(e) {
-		const searchedText = e.target.value;
-		console.log(searchedText)
-		this.setState({searchedText: searchedText})
+		const searchedText = e.target.value.toLowerCase();
+		const clientList = this.props.clientList;
+		
+		/* conditions is options for filter function of clients list 
+		 (must have a structure like clients JSON data) */
+		const CONDITIONS = {
+			general: {
+				firstName: true,
+				lastName: true,
+				avatar: true,
+			},
+			job: {
+				company: true,
+				title: true,
+			},
+			contact: {
+				email: true,
+				phone: true,
+			},
+			address: {
+				street: true,
+				city: true,
+				zipCode: true,
+				country: true,
+			},
+		};
+
+		const filteredList = filterList(searchedText, clientList, CONDITIONS );
+
+		this.setState({
+			searchedText, 
+			filteredClientList: filteredList,
+		});
 	}
 
-	render() {
-		const { phoneList, loading } = this.props;
-		const { currentClient, displayCurrentClient } = this.state;
 
+
+
+
+	render() {
+		const { loading, } = this.props;
+		const { currentClient, filteredClientList, displayCurrentClient, } = this.state;
+		
 		const columnStyles = {
 			border: '1px solid black', paddingTop: '1rem'
 		}
 
-		let phoneListContent = null;
+		let clientListContent = null;
 		
 		if ( !loading ) {
-			phoneListContent = 
-				<PhoneList 
-					phoneList={ phoneList }
-					getPhoneItem={ (dataPhone) => this.getPhoneItem(dataPhone) }
+			clientListContent = 
+				<ClientList 
+					clientList={ filteredClientList }
+					getClientItem={ (dataClient) => this.getClientItem(dataClient) }
 				/>
 		
 		}
 
 		return (
-			<div className="ui grid centered" style={{marginTop: '20px'}}>
+			<div className="ui grid centered" style={{marginTop: '20px', height: '100%'}}>
 				<div className="five wide column" style={columnStyles}>
 					{ 
 						<SearchInput 
@@ -74,31 +122,29 @@ class PhoneBook extends Component {
 							onChange={ this.onSearch }
 						/> 
 					}
-					{ phoneListContent }
+					{ clientListContent }
 				</div>
 
 				<div className="six wide column" style={columnStyles}>
 					{ 
 						displayCurrentClient 
-						? <FullPhoneItem client={currentClient}/>
+						? <FullClientItem client={currentClient}/>
 						: null
 					}
-					
 				</div>
-			
 			</div>
 		);
 	};
 };
 
 const mapStateToProps = state => ({
-	phoneList: state.phoneList,
+	clientList: state.clientList,
 	loading: state.loading,
 
 });
 
 const mapDispatchToProps = dispatch => ({
-	getPhoneList : () => dispatch( actions.getPhoneList() )
+	getClientList : () => dispatch( actions.getClientList() )
 
 });
 
