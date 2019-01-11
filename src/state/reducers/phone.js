@@ -1,28 +1,28 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-	phoneList: [],
+	clientList: [],
 	loading: false,
 	error: false,
 };
 
 
-const getPhoneListLoading = (state, action) => {
+const getClientListLoading = (state, action) => {
 	return {
 		...state,
 		loading: true,
 	}
 };
 
-const getPhoneListSuccess = (state, action) => {
+const getClientListSuccess = (state, action) => {
 	return {
 		...state,
-		phoneList: action.phoneList,
+		clientList: action.clientList,
 		loading: false,
 	}
 };
 
-const getPhoneListFailed = (state, action) => {
+const getClientListFailed = (state, action) => {
 	return {
 		...state,
 		error: true,
@@ -32,9 +32,9 @@ const getPhoneListFailed = (state, action) => {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.GET_PHONE_LIST_LOADING : return getPhoneListLoading(state, action);
-		case actionTypes.GET_PHONE_LIST_SUCCESS : return getPhoneListSuccess(state, action);
-		case actionTypes.GET_PHONE_LIST_FAILED : return getPhoneListFailed(state, action);
+		case actionTypes.GET_CLIENT_LIST_LOADING : return getClientListLoading(state, action);
+		case actionTypes.GET_CLIENT_LIST_SUCCESS : return getClientListSuccess(state, action);
+		case actionTypes.GET_CLIENT_LIST_FAILED : return getClientListFailed(state, action);
 		default : return state;
 	}
 };
