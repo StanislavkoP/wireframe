@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../state/actions/index';
 
 import PhoneList from '../components/PhoneList/PhoneList';
+import FullPhoneItem from '../components/FullPhoneItem/FullPhoneItem';
 
 class PhoneBook extends Component {
 	
@@ -32,6 +33,11 @@ class PhoneBook extends Component {
 
 	render() {
 		const { phoneList, loading } = this.props;
+		const { currentPhone } = this.state;
+
+		const columnStyles = {
+			border: '1px solid black', paddingTop: '1rem'
+		}
 
 		let phoneListContent = null;
 		
@@ -45,13 +51,13 @@ class PhoneBook extends Component {
 		}
 
 		return (
-			<div className="ui grid centered">
-				<div className="six wide column">
+			<div className="ui grid centered" style={{marginTop: '20px'}}>
+				<div className="six wide column" style={columnStyles}>
 					{ phoneListContent }
 				</div>
 
-				<div className="six wide column">
-					Two column
+				<div className="six wide column" style={columnStyles}>
+					<FullPhoneItem phone={currentPhone}/>
 				</div>
 			
 			</div>

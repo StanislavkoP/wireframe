@@ -1,0 +1,41 @@
+.fullPhoneItem {
+	display: flex;
+	flex-direction: row;
+	font-size: 1.18em;
+}
+
+.fullPhoneItem__left {
+	width: 128px;
+}
+
+.fullPhoneItem__right {
+	flex: 1;
+	margin-left: 24px;
+}
+
+.fullPhoneItem__avatar {
+	width: 128px;
+	height: auto;
+}
+
+.fullPhoneItem__header {
+	height: 128px;
+}
+
+.fullPhoneItem__content p {
+	margin: 0em 0em 0.6em;
+}
+
+
+
+.fullPhoneItem__address {
+	margin-top: 20px;
+}
+
+.fullPhoneItem__contacts-content,
+.fullPhoneItem__address-content {
+	margin-left: 12px;
+}
+
+
+
