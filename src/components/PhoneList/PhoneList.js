@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-import './PhoneList.css';
-
 import PhoneItem from './PhoneItem/PhoneItem';
 
 PhoneList.defaultProps = {
@@ -18,7 +16,7 @@ function PhoneList(props) {
 	const { phoneList, getPhoneItem } = props;
 
 	return (
-		<div className="ui link items phoneList">
+		<div className="ui link items">
 			{
 				phoneList.map( (phone, index) => (
 					<PhoneItem
