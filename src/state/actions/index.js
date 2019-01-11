@@ -1,4 +1,4 @@
 export {
-	getPhoneList
+	getClientList
 
 } from './phone';
