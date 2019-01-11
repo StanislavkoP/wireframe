@@ -1,20 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import './FullPhoneItem.css';
+import { isEmpty } from '../../utils/validation';
 
-FullPhoneItem.defaultTypes = {
+import './FullClientItem.css';
+
+FullClientItem.defaultTypes = {
 	client: {}
-}
+};
 
-FullPhoneItem.propTypes = {
+FullClientItem.propTypes = {
 	client: PropTypes.object.isRequired
-}
+};
 
-function FullPhoneItem(props) {
-	
+function FullClientItem(props) {
 	const { client } = props;
-	console.log(client)
+
+	
+
 	return (
 		<div className="fullPhoneItem">
 			<div className="fullPhoneItem__left">
@@ -51,10 +54,10 @@ function FullPhoneItem(props) {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 
 
-export default FullPhoneItem;
+export default FullClientItem;
 

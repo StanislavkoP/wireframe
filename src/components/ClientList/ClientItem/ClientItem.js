@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-PhoneItem.defaultProps = {
+ClientItem.defaultProps = {
 	firstName: '',
 	lastName: '',
 	avatar: '',
 
 };
 
-PhoneItem.propTypes = {
+ClientItem.propTypes = {
 	firstName: PropTypes.string,
 	lastName: PropTypes.string,
 	avatar: PropTypes.string,
@@ -16,7 +16,7 @@ PhoneItem.propTypes = {
 };
 
 
-function PhoneItem(props) {
+function ClientItem(props) {
 	const { firstName, lastName, avatar, jobTitle, clicked } = props
 
 	return (
@@ -36,5 +36,5 @@ function PhoneItem(props) {
 	);
 };
 
-export default PhoneItem;
+export default ClientItem;
 
