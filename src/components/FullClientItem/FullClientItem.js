@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 import { isEmpty } from '../../utils/validation';
 
+import FullClientItemHeader from './Header/Header';
+import FullClientItemContent from './Content/Content';
+
 import './FullClientItem.css';
+
+const IMAGE_PLACEHOLDER = 'https://via.placeholder.com/128';
 
 FullClientItem.defaultTypes = {
 	client: {}
@@ -16,42 +21,20 @@ FullClientItem.propTypes = {
 function FullClientItem(props) {
 	const { client } = props;
 
-	
+	const avatar = !isEmpty(client.general) ? client.general.avatar : IMAGE_PLACEHOLDER;
+	const firstName = !isEmpty(client.general) ? client.general.firstName : '';
+	const lastName = !isEmpty(client.general) ? client.general.lastName : '';
+
 
 	return (
 		<div className="fullPhoneItem">
 			<div className="fullPhoneItem__left">
-				<img className="ui circular image fullPhoneItem__avatar" src={`${client.general.avatar}`} alt={ `${client.general.firstName} ${client.general.lastName}` }/>
+				<img className="ui circular image fullPhoneItem__avatar" src={`${ avatar }`} alt={ `${ firstName } ${ lastName }` }/>
 			</div>
+
 			<div className="fullPhoneItem__right">
-				<div className="fullPhoneItem__header">
-					<h1>{ `${client.general.firstName} ${client.general.lastName}` }</h1>
-					<h4>{ `${client.job.title} — ${client.job.company}` }</h4>
-				</div>
-
-
-				<div className="fullPhoneItem__content">
-					<div className="fullPhoneItem__contacts">
-						<h3>
-							Contacts
-						</h3>
-						<div className="fullPhoneItem__contacts-content">
-							<p>{`Phone: ${ client.contact.phone }`}</p>
-							<p>{`Email: ${ client.contact.email }`}</p>
-						</div>
-					</div>
-					<div className="fullPhoneItem__address">
-						<h3>
-							Address
-						</h3>
-						<div className="fullPhoneItem__address-content">
-							<p>{`Country: ${ client.address.country }`}</p>
-							<p>{`City: ${ client.address.city }`}</p>
-							<p>{`Street: ${ client.address.street }`}</p>
-							<p>{`Zip code: ${ client.address.zipCode }`}</p>
-						</div>
-					</div>
-				</div>
+				<FullClientItemHeader general={ client.general } job={ client.job }/>
+				<FullClientItemContent contacts={ client.contact } address={ client.address }/>
 			</div>
 		</div>
 	);
