@@ -8,15 +8,18 @@ FullPhoneItem.propTypes = {
 }
 
 function FullPhoneItem(props) {
+	
+	const { client } = props;
+	console.log(client)
 	return (
 		<div className="fullPhoneItem">
 			<div className="fullPhoneItem__left">
-				<img className="ui circular image fullPhoneItem__avatar" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" />
+				<img className="ui circular image fullPhoneItem__avatar" src={`${client.general.avatar}`} />
 			</div>
 			<div className="fullPhoneItem__right">
 				<div className="fullPhoneItem__header">
-					<h1>Name</h1>
-					<h4>Title Job</h4>
+					<h1>{ `${client.general.firstName} ${client.general.lastName}` }</h1>
+					<h4>{ `${client.job.title} — ${client.job.company}` }</h4>
 				</div>
 
 
@@ -26,8 +29,8 @@ function FullPhoneItem(props) {
 							Contacts
 						</h3>
 						<div className="fullPhoneItem__contacts-content">
-							<p>Phone: 213124124</p>
-							<p>Email: @gmail</p>
+							<p>{`Phone: ${ client.contact.phone }`}</p>
+							<p>{`Email: ${ client.contact.email }`}</p>
 						</div>
 					</div>
 					<div className="fullPhoneItem__address">
@@ -35,10 +38,10 @@ function FullPhoneItem(props) {
 							Address
 						</h3>
 						<div className="fullPhoneItem__address-content">
-							<p>Country: UK</p>
-							<p>City: ZP</p>
-							<p>Street: ZP</p>
-							<p>Zip code: ZP</p>
+							<p>{`Country: ${ client.address.country }`}</p>
+							<p>{`City: ${ client.address.city }`}</p>
+							<p>{`Street: ${ client.address.street }`}</p>
+							<p>{`Zip code: ${ client.address.zipCode }`}</p>
 						</div>
 					</div>
 				</div>
