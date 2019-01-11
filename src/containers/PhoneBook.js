@@ -6,6 +6,7 @@ import * as actions from '../state/actions/index';
 
 import PhoneList from '../components/PhoneList/PhoneList';
 import FullPhoneItem from '../components/FullPhoneItem/FullPhoneItem';
+import SearchInput from '../components/UI/SearchInput';
 
 class PhoneBook extends Component {
 	
