@@ -9,11 +9,18 @@ import FullPhoneItem from '../components/FullPhoneItem/FullPhoneItem';
 import SearchInput from '../components/UI/SearchInput';
 
 class PhoneBook extends Component {
-	
-	state = {
-		currentClient: null,
-		displayCurrentClient: false,
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			searchedText: '',
+			currentClient: null,
+			displayCurrentClient: false,
+		}
+
+		this.onSearch = this.onSearch.bind(this)
 	}
+
 
 	componentDidMount() {
 		this.props.getPhoneList();
@@ -31,6 +38,12 @@ class PhoneBook extends Component {
 	getPhoneItem( dataPhone ) {
 		this.setState({currentClient: dataPhone, displayCurrentClient: true})
 		console.log(dataPhone);
+	}
+
+	onSearch(e) {
+		const searchedText = e.target.value;
+		console.log(searchedText)
+		this.setState({searchedText: searchedText})
 	}
 
 	render() {
@@ -54,7 +67,13 @@ class PhoneBook extends Component {
 
 		return (
 			<div className="ui grid centered" style={{marginTop: '20px'}}>
-				<div className="six wide column" style={columnStyles}>
+				<div className="five wide column" style={columnStyles}>
+					{ 
+						<SearchInput 
+							value={ this.state.searchedText }
+							onChange={ this.onSearch }
+						/> 
+					}
 					{ phoneListContent }
 				</div>
 
