@@ -10,7 +10,8 @@ import FullPhoneItem from '../components/FullPhoneItem/FullPhoneItem';
 class PhoneBook extends Component {
 	
 	state = {
-		currentPhone: null
+		currentClient: null,
+		displayCurrentClient: false,
 	}
 
 	componentDidMount() {
@@ -27,13 +28,13 @@ class PhoneBook extends Component {
 	};
 
 	getPhoneItem( dataPhone ) {
-		this.setState({currentPhone: dataPhone})
+		this.setState({currentClient: dataPhone, displayCurrentClient: true})
 		console.log(dataPhone);
 	}
 
 	render() {
 		const { phoneList, loading } = this.props;
-		const { currentPhone } = this.state;
+		const { currentClient, displayCurrentClient } = this.state;
 
 		const columnStyles = {
 			border: '1px solid black', paddingTop: '1rem'
@@ -57,7 +58,12 @@ class PhoneBook extends Component {
 				</div>
 
 				<div className="six wide column" style={columnStyles}>
-					<FullPhoneItem phone={currentPhone}/>
+					{ 
+						displayCurrentClient 
+						? <FullPhoneItem client={currentClient}/>
+						: null
+					}
+					
 				</div>
 			
 			</div>
