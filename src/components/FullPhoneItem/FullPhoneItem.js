@@ -18,7 +18,7 @@ function FullPhoneItem(props) {
 	return (
 		<div className="fullPhoneItem">
 			<div className="fullPhoneItem__left">
-				<img className="ui circular image fullPhoneItem__avatar" src={`${client.general.avatar}`} />
+				<img className="ui circular image fullPhoneItem__avatar" src={`${client.general.avatar}`} alt={ `${client.general.firstName} ${client.general.lastName}` }/>
 			</div>
 			<div className="fullPhoneItem__right">
 				<div className="fullPhoneItem__header">
