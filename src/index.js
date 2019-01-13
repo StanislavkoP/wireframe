@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 import App from './App';
 
-import reducer from './state/reducers/phone';
+import reducer from './state/reducers/client';
 
 const rootReducer = reducer;
 
