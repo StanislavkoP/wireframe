@@ -21,11 +21,11 @@ function FullClientItemAddress(props) {
 
 
 	return (
-		<div className="fullPhoneItem__address">
+		<div className="fullClientInform__address">
 			<h3>
 				Address
 			</h3>
-			<div className="fullPhoneItem__address-content">
+			<div className="fullClientInform__address-content">
 				<p>{`Country: ${ country }`}</p>
 				<p>{`City: ${ city }`}</p>
 				<p>{`Street: ${ street }`}</p>

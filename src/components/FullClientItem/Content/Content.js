@@ -23,7 +23,7 @@ function FullClientItemContent(props) {
 
 
 	return (
-		<div className="fullPhoneItem__content">
+		<div className="fullClientInform__content">
 			<FullClientItemContacts contacts={ contacts }/>
 			<FullClientItemAddress address={ address }/>
 		</div>

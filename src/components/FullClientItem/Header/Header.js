@@ -23,7 +23,7 @@ function FullClientItemContacts(props) {
 
 
 	return (
-		<div className="fullPhoneItem__header">
+		<div className="fullClientInform__header">
 			<h1>{ `${ firstName } ${ lastName }` }</h1>
 			<h4>{ `${ jobTitle } — ${ jobCompany }` }</h4>
 		</div>
