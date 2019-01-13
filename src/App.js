@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import ClientList from './containers/ClientList';
+import Client from './containers/Client';
 
 class App extends Component {
 	render() {
 		return (
 			<div className="appWrap" style={{overflowX: 'hidden', height: 'calca'}}>
-				<ClientList />
+				<Client />
 			</div>
 		);
 	}
