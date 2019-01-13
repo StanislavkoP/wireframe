@@ -61,9 +61,19 @@ class PhoneBook extends Component {
 		const { loading, filteredClientList} = this.props;
 
 		
-		const columnStyles = {
-			border: '1px solid black', paddingTop: '1rem'
-		}
+		const columnStylesRight = {
+			border: '1px solid black',
+			paddingTop: '1rem',
+			overflowY: 'scroll',
+    		height: 'calc(100vh - 30px)',
+		};
+
+		const columnStylesLeft = {
+			border: '1px solid black',
+			paddingTop: '1rem',
+			overflowY: 'auto',
+    		height: 'calc(100vh - 30px)',
+		};
 
 		let clientListContent = null;
 		if ( !loading ) {
@@ -77,8 +87,8 @@ class PhoneBook extends Component {
 		}
 		
 		return (
-			<div className="ui grid centered" style={{marginTop: '20px', height: '100%'}}>
-				<div className="seven wide tablet five wide computer column" style={columnStyles}>
+			<div className="ui grid centered" style={{paddingTop: '20px'}}>
+				<div className="seven wide tablet five wide computer column" style={columnStylesLeft}>
 					{ 
 						<SearchInput 
 							value={ this.state.searchedText }
@@ -89,7 +99,7 @@ class PhoneBook extends Component {
 					{ clientListContent }
 				</div>
 
-				<div className="seven wide six wide computer column" style={columnStyles}>
+				<div className="seven wide six wide computer column" style={columnStylesRight}>
 					{ <FullClientInform /> }
 				</div>
 			</div>
