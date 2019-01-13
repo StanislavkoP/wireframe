@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-import PhoneBook from './containers/PhoneBook';
+import ClientList from './containers/ClientList';
 
 class App extends Component {
 	render() {
 		return (
-			<PhoneBook />
+			<div className="appWrap" style={{overflowX: 'hidden', height: 'calca'}}>
+				<ClientList />
+			</div>
 		);
 	}
 }
