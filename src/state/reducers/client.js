@@ -1,7 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
+	searchedText: '',
 	clientList: [],
+	currentClientId: null,
 	loading: false,
 	error: false,
 };
@@ -29,12 +31,29 @@ const getClientListFailed = (state, action) => {
 	}
 };
 
+const getCurrentClient = (state, action) => {
+	return {
+		...state,
+		currentClientId: action.currentClientId,
+	}
+}
+
+const searchClients = (state, action) => {
+	return {
+		...state, 
+		searchedText: action.text,
+	}
+}
+
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.GET_CLIENT_LIST_LOADING : return getClientListLoading(state, action);
 		case actionTypes.GET_CLIENT_LIST_SUCCESS : return getClientListSuccess(state, action);
 		case actionTypes.GET_CLIENT_LIST_FAILED : return getClientListFailed(state, action);
+		case actionTypes.GET_CURRENT_CLIENT : return getCurrentClient(state, action);
+		case actionTypes.SEARCH_CLIENTS : return searchClients(state, action);
+		
 		default : return state;
 	}
 };

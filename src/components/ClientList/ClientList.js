@@ -17,8 +17,6 @@ ClientList.propTypes = {
 function ClientList(props) {
 	const { clientList, getClientItem } = props;
 
-
-
 	return (
 		<div className="ui link items">
 			{
@@ -35,11 +33,11 @@ function ClientList(props) {
 							firstName={ firstName }
 							lastName={ lastName }
 							jobTitle={ jobTitle }
-							clicked={ () => getClientItem(client) }
+							clicked={ () => getClientItem(client.id) }
 						/>
-					);
+					)
 				})
-			};
+			}
 		</div>
 	);
 };

@@ -1,4 +1,5 @@
 export {
-	getClientList
-
-} from './phone';
+	getClientList,
+	getCurrentClient,
+	searchClients,
+} from './client';

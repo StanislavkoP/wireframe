@@ -19,11 +19,11 @@ function FullClientItemContacts(props) {
 
 
 	return (
-		<div className="fullPhoneItem__contacts">
+		<div className="fullClientInform__contacts">
 			<h3>
 				Contacts
 			</h3>
-			<div className="fullPhoneItem__contacts-content">
+			<div className="fullClientInform__contacts-content">
 				<p>{`Phone: ${ phone }`}</p>
 				<p>{`Email: ${ email }`}</p>
 			</div>

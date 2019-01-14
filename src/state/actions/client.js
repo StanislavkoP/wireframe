@@ -41,3 +41,17 @@ export const getClientList = () => dispatch => {
 			dispatch( getClientListFailed() )
 		});
 };
+
+export const searchClients = (text) => dispatch => {
+	dispatch({
+		type: actionTypes.SEARCH_CLIENTS, 
+		text,
+	})
+}
+
+export const getCurrentClient = (currentClientId) => dispatch => {	
+	dispatch({
+		type: actionTypes.GET_CURRENT_CLIENT,
+		currentClientId,
+	});
+}
