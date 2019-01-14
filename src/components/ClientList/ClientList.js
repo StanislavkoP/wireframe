@@ -16,7 +16,7 @@ ClientList.propTypes = {
 
 function ClientList(props) {
 	const { clientList, getClientItem } = props;
-	console.log('renderList');
+
 	return (
 		<div className="ui link items">
 			{
