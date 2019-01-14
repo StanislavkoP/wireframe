@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {isEmpty} from '../utils/validation';
-
 import * as actions from '../state/actions/index';
 import selectFilteredList from '../selectors/filter';
 
@@ -53,26 +51,13 @@ class PhoneBook extends Component {
 		});
 	}
 
-
-
-
-
 	render() {
-		const { loading, filteredClientList} = this.props;
+		const {filteredClientList, loading, error} = this.props;
 
-		
-		const columnStylesRight = {
+		const columnStylesCommon = {
 			border: '1px solid black',
 			paddingTop: '1rem',
-			overflowY: 'scroll',
-    		height: 'calc(100vh - 30px)',
-		};
-
-		const columnStylesLeft = {
-			border: '1px solid black',
-			paddingTop: '1rem',
-			overflowY: 'auto',
-    		height: 'calc(100vh - 30px)',
+			height: 'calc(100vh - 30px)',
 		};
 
 		let clientListContent = null;
@@ -85,10 +70,14 @@ class PhoneBook extends Component {
 				/>
 		
 		}
+
+		if (error) {
+			clientListContent = (<h1>Error</h1>)
+		}
 		
 		return (
 			<div className="ui grid centered" style={{paddingTop: '20px'}}>
-				<div className="seven wide tablet five wide computer column" style={columnStylesLeft}>
+				<div className="seven wide tablet five wide computer column" style={Object.assign(columnStylesCommon, {overflowY: 'scroll'} )}>
 					{ 
 						<SearchInput 
 							value={ this.state.searchedText }
@@ -99,7 +88,7 @@ class PhoneBook extends Component {
 					{ clientListContent }
 				</div>
 
-				<div className="seven wide six wide computer column" style={columnStylesRight}>
+				<div className="seven wide six wide computer column" style={Object.assign(columnStylesCommon, {overflowY: 'auto'} )}>
 					{ <FullClientInform /> }
 				</div>
 			</div>
@@ -109,6 +98,7 @@ class PhoneBook extends Component {
 
 const mapStateToProps = state => ({
 	filteredClientList: selectFilteredList(state),
+	error : state.error,
 	loading: state.loading,
 
 });
