@@ -36,27 +36,33 @@ const filterList = (list, searchedText) => {
 		return list;
 	}
 
+	//Array where we adding a filtered objects
 	let filteredList = [];
-
+		// Iteration over the first key in CONDITIONS
 		for( let key in CONDITIONS) {
+			
+			// Checking if the first key in CONDITIONS object has filter keys
 			if( !isEmpty(CONDITIONS[key]) ) {
-				
+				// Iteration over the second key in CONDITIONS
 				for( let key2 in CONDITIONS[key]) {
-					if ( !isEmpty(CONDITIONS[key][key2]) ) {
-							
-						list.forEach(item => {
-							const valueHasCoincidence = item[key][key2].toLowerCase().includes(searchedText);
-							
-							if ( valueHasCoincidence ) {
-								const existsItem = filteredList.some(item2 => item2.id === item.id);
 
-								if (!existsItem) {
-									filteredList.push(item)
-								
-								};
+					// Iteration over the list you need to filter
+					list.forEach(contact => {
+						// Variable with true or false if contact has field coincidence with text which user typed
+						const valueHasCoincidence = contact[key][key2].toLowerCase().includes(searchedText);
+						
+						// If it has coincedence
+						if ( valueHasCoincidence ) {
+							// We cheking if the filtered list has current iteration item
+							const existsContact = filteredList.some(filteredContact => filteredContact.id === contact.id);
+
+							// If not then we add this iteration item to the filtered list
+							if (!existsContact) {
+								filteredList.push(contact)
+							
 							};
-						});
-					};
+						};
+					});
 				};
 			};
 		};
